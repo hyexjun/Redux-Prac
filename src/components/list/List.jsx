@@ -1,8 +1,42 @@
-import Todo from '../todo/Todo';
 import './List.css';
+import Todo from '../todo/Todo';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteTodo, toggleStatusTodo } from '../../redux/modules/todos';
 
-const List = ({ todos, onRemove, onEdit }) => {
-  // console.log(todos);
+// const List = ({ todos, setTodos }) => {
+const List = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos.todoList);
+  console.log(todos);
+
+  // const onRemove = (todoId) => {
+  //   const newTodos = todos.filter((todo) => {
+  //     return todo.id !== todoId;
+  //   });
+  //   setTodos(newTodos);
+  // };
+
+  const onRemove = (id) => {
+    dispatch(deleteTodo(id));
+  };
+
+  // const onEdit = (todoId) => {
+  //   const newTodos = todos.map((todo) => {
+  //     if (todo.id === todoId) {
+  //       return {
+  //         ...todo,
+  //         isDone: !todo.isDone,
+  //       };
+  //     } else {
+  //       return { ...todo };
+  //     }
+  //   });
+  //   setTodos(newTodos);
+  // };
+
+  const onEdit = (id) => {
+    dispatch(toggleStatusTodo(id));
+  };
 
   return (
     <div className='list-container'>
@@ -14,15 +48,26 @@ const List = ({ todos, onRemove, onEdit }) => {
       <div className='list-wrapper'>
         {todos.map((todo) =>
           !todo.isDone ? (
-            <Todo key={todo.id} {...todo} onRemove={onRemove} onEdit={onEdit} />
+            <Todo
+              key={todo.id}
+              todo={todo}
+              onRemove={onRemove}
+              onEdit={onEdit}
+            />
           ) : null
         )}
       </div>
       <h2>Done..🌞</h2>
       <div className='list-wrapper'>
-      {todos.map((todo) =>
+        {todos.map((todo) =>
           todo.isDone ? (
-            <Todo key={todo.id} {...todo} onRemove={onRemove} onEdit={onEdit} />
+            <Todo
+              key={todo.id}
+              todo={todo}
+              // setTodos={setTodos}
+              onRemove={onRemove}
+              onEdit={onEdit}
+            />
           ) : null
         )}
       </div>

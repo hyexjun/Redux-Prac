@@ -1,7 +1,9 @@
 import './Form.css';
 import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../../redux/modules/todos';
+// import { addTodo } from '../../redux/modules/todos';
+import { todosActions } from '../../redux/modules/todosSlice';
+import axios from 'axios';
 
 const Form = () => {
   const initialState = {
@@ -22,15 +24,22 @@ const Form = () => {
     });
   };
 
-  let dataId = useRef(3); // 이전 useRef 사용했던 거 대신 ㄹㅇ 숫자로,,
+  let dataId = useRef(3);
   const handleSubmit = (event) => {
     event.preventDefault();
     const createdAt = new Date().getTime();
-    // console.log(createdAt);
+    console.log(createdAt);
     if (todo.title.trim() === '' || todo.content.trim() === '') return;
     // setTodos([...todos, { ...todo, id: num, createdAt }]);
-    dispatch(addTodo({ ...todo, id: dataId.current, createdAt }));
+    dispatch(todosActions.addTodo({ ...todo, id: dataId.current, createdAt }));
     setTodo(initialState);
+
+    // 서버로도 저장해보기
+    axios.post('http://localhost:3001/todoList', {
+      ...todo,
+      id: dataId.current,
+      createdAt,
+    });
     dataId.current++;
   };
 

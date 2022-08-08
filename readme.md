@@ -1,3 +1,5 @@
-### redux 적용 Todo
-- 메인페이지에서 3번 글 삭제 후 4번 생성 시 아이디 4로 생성 O
-- 상세페이지 다녀온 후 다시 메인에서 5번 생성 시 id, 상세페이지로 전달되는 데이터 꼬임
+### redux-toolkit 적용 Todo
+- 초기값 State 불러오기, 글 생성만 잘 됨 (CRUD 중 CR만 정상)
+- 상세페이지 id 매칭으로 store에서 특정 todo 불러오기 x
+- isDone 토글, 글 삭제 작동 x (CRUD 중 UD 불가)
+- 번외 : 툴킷과 별개로 작동하나 json-server 통한 db 통신(axios) 테스트

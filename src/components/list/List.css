@@ -1,0 +1,23 @@
+.list-container {
+  padding: 0 24px;
+}
+
+.list-container > p {
+  font-size: 17px;
+  border: 1px solid rebeccapurple;
+  border-radius: 10px;
+  padding: 10px 15px;
+  font-style: italic;
+}
+
+.list-container > h2 {
+  font-size: 24px;
+  /* font-weight: 500; */
+}
+
+.list-wrapper {
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  gap: 12px;
+}

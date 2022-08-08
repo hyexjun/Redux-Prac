@@ -1,0 +1,44 @@
+.todo-container {
+  width: 225px;
+  height: 190px;
+  border: 2px solid rgb(195, 199, 230);
+  border-radius: 10px;
+  padding: 5px 24px 24px 24px;
+  margin-bottom: 10px;
+}
+
+.todo-container > div > h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.todo-container > div > p {
+  font-size: 17px;
+}
+
+.todo-container > div > h5 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.button-set {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.button {
+  border: none;
+  width: 50%;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button-delete {
+  background-color: rgb(223, 226, 255);
+}
+
+.button-complete {
+  background-color: rgb(195, 199, 230);
+}

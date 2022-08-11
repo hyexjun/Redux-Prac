@@ -1,10 +1,13 @@
 import './Todo.css';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { deleteTodo, toggleStatusTodo } from '../../redux/modules/todos';
+import { useDispatch } from 'react-redux';
 
-const Todo = ({ todo, onRemove, onEdit }) => {
+const Todo = ({ todo }) => {
+  const dispatch = useDispatch();
   const handleRemove = () => {
     if (window.confirm(`${todo.id}번 항목을 삭제하시겠습니까?`)) {
-      onRemove(todo.id);
+      dispatch(deleteTodo(todo.id));
     }
   };
 
@@ -19,19 +22,24 @@ const Todo = ({ todo, onRemove, onEdit }) => {
           <h5>{new Date(todo.createdAt).toLocaleString()}</h5>
         </div>
         <div className='button-set'>
-          <button
-            className='button button-delete'
-            onClick={handleRemove}
-          >
+          <button className='button button-delete' onClick={handleRemove}>
             삭제
           </button>
-          <button className='button button-complete' onClick={() => onEdit(todo.id)}>
+          <button
+            className='button button-complete'
+            onClick={() => dispatch(toggleStatusTodo(todo.id))}
+          >
             {todo.isDone ? '취소' : '완료'}
           </button>
-          <button className='button' onClick={() => navigate(`/detail/${todo.id}`)}>상세</button>
+          <button
+            className='button'
+            onClick={() => navigate(`/detail/${todo.id}`)}
+          >
+            상세
+          </button>
         </div>
       </div>
-    </> 
+    </>
   );
 };
 

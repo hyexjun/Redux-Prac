@@ -1,42 +1,19 @@
 import './List.css';
 import Todo from '../todo/Todo';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteTodo, toggleStatusTodo } from '../../redux/modules/todos';
+import { useSelector } from 'react-redux';
 
 // const List = ({ todos, setTodos }) => {
 const List = () => {
-  const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos.todoList);
-  console.log(todos);
+  // console.log(todos);
 
-  // const onRemove = (todoId) => {
-  //   const newTodos = todos.filter((todo) => {
-  //     return todo.id !== todoId;
-  //   });
-  //   setTodos(newTodos);
+  // const onRemove = (id) => {
+  //   dispatch(deleteTodo(id));
   // };
 
-  const onRemove = (id) => {
-    dispatch(deleteTodo(id));
-  };
-
-  // const onEdit = (todoId) => {
-  //   const newTodos = todos.map((todo) => {
-  //     if (todo.id === todoId) {
-  //       return {
-  //         ...todo,
-  //         isDone: !todo.isDone,
-  //       };
-  //     } else {
-  //       return { ...todo };
-  //     }
-  //   });
-  //   setTodos(newTodos);
+  // const onEdit = (id) => {
+  //   dispatch(toggleStatusTodo(id));
   // };
-
-  const onEdit = (id) => {
-    dispatch(toggleStatusTodo(id));
-  };
 
   return (
     <div className='list-container'>
@@ -51,8 +28,8 @@ const List = () => {
             <Todo
               key={todo.id}
               todo={todo}
-              onRemove={onRemove}
-              onEdit={onEdit}
+              // onRemove={onRemove}
+              // onEdit={onEdit}
             />
           ) : null
         )}
@@ -64,9 +41,8 @@ const List = () => {
             <Todo
               key={todo.id}
               todo={todo}
-              // setTodos={setTodos}
-              onRemove={onRemove}
-              onEdit={onEdit}
+              // onRemove={onRemove}
+              // onEdit={onEdit}
             />
           ) : null
         )}

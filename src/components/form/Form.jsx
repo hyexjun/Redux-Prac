@@ -1,9 +1,8 @@
 import './Form.css';
 import { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-// import { addTodo } from '../../redux/modules/todos';
-import { todosActions } from '../../redux/modules/todosSlice';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { todosActions } from '../../redux/modules/todos';
+// import axios from 'axios';
 
 const Form = () => {
   const initialState = {
@@ -13,6 +12,9 @@ const Form = () => {
     isDone: false,
     createdAt: null,
   };
+
+  // const emptytodo = useSelector((state) => state.todos.todo);
+  // console.log(emptytodo);
 
   const dispatch = useDispatch();
   const [todo, setTodo] = useState(initialState);
@@ -30,16 +32,15 @@ const Form = () => {
     const createdAt = new Date().getTime();
     console.log(createdAt);
     if (todo.title.trim() === '' || todo.content.trim() === '') return;
-    // setTodos([...todos, { ...todo, id: num, createdAt }]);
     dispatch(todosActions.addTodo({ ...todo, id: dataId.current, createdAt }));
     setTodo(initialState);
 
     // 서버로도 저장해보기
-    axios.post('http://localhost:3001/todoList', {
-      ...todo,
-      id: dataId.current,
-      createdAt,
-    });
+    // axios.post('http://localhost:3001/todoList', {
+    //   ...todo,
+    //   id: dataId.current,
+    //   createdAt,
+    // });
     dataId.current++;
   };
 

@@ -2,7 +2,7 @@ import Layout from '../components/layout/Layout';
 import Header from '../components/header/Header';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTodoByID } from '../redux/modules/todos';
 import Comment from '../components/comment/Comment';

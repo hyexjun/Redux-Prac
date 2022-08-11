@@ -1,16 +1,18 @@
 import './Form.css';
 import { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTodo } from '../../redux/modules/todos';
 
 const Form = () => {
-  const initialState = {
-    id: 0,
-    title: '',
-    content: '',
-    isDone: false,
-    createdAt: null,
-  };
+  // const initialState = {
+  //   id: 0,
+  //   title: '',
+  //   content: '',
+  //   isDone: false,
+  //   createdAt: null,
+  // };
+
+  const initialState = useSelector((state) => state.todos.todo);
 
   const dispatch = useDispatch();
   const [todo, setTodo] = useState(initialState);
@@ -26,9 +28,7 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const createdAt = new Date().getTime();
-    // console.log(createdAt);
     if (todo.title.trim() === '' || todo.content.trim() === '') return;
-    // setTodos([...todos, { ...todo, id: num, createdAt }]);
     dispatch(addTodo({ ...todo, id: dataId.current, createdAt }));
     setTodo(initialState);
     dataId.current++;

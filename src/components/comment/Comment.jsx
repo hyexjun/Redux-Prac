@@ -35,26 +35,26 @@ const Comment = () => {
     <>
       <StDivCommentForm>
         <label htmlFor='writer'>작성자</label>
-        <input
+        <StInput
           name='writer'
           value={comment.writer}
           onChange={handleChangeState}
           type='text'
         />
-        <label htmlFor='body'>응원</label>
-        <input
+        <label htmlFor='body'>내용</label>
+        <StInput
           name='body'
           value={comment.body}
           onChange={handleChangeState}
           type='text'
         />
-        <button
+        <StButton
           onClick={() => {
             handleSubmit();
           }}
         >
-          등록
-        </button>
+          응원 남기기
+        </StButton>
       </StDivCommentForm>
       <StDivCommentsBox>
         {allComment.map((comment) => (
@@ -78,20 +78,38 @@ const StDivCommentForm = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  /* gap: 20px; */
+`;
+
+const StInput = styled.input`
+  height: 30px;
+  width: 240px;
+  border: none;
+  border-radius: 10px;
+  padding: 0 12px;
+`;
+
+const StButton = styled.button`
+  border: none;
+  height: 35px;
+  border-radius: 10px;
+  background-color: rgb(195, 199, 230);
+  width: 140px;
+  color: rgb(62, 59, 70);
+  font-weight: 500;
+  font-size: 15px;
 `;
 
 const StDivCommentsBox = styled.div`
-  border: 1px solid rebeccapurple;
-  margin: 10px;
-`
+  /* border: 1px solid rebeccapurple; */
+  margin: 30px;
+`;
 
 const StDivCommentBox = styled.div`
   width: 600px;
   margin: 20px auto;
   padding: 10px 20px;
   border-radius: 10px;
-  background-color: rgb(233, 235, 248)
+  background-color: rgb(233, 235, 248);
 `;
 
 export default Comment;

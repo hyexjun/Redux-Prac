@@ -2,6 +2,7 @@
 const ADD_COMMENT = 'ADD_COMMENT';
 const DELETE_COMMENT = 'DELETE_COMMENT';
 const TOGGLE_STATUS_COMMENT = 'TOGGLE_STATUS_COMMENT';
+const GET_COMMENT_BY_TODOID = 'GET_COMMENT_BY_TODOID';
 
 // Action Creator
 export const addComment = (payload) => {
@@ -21,6 +22,13 @@ export const deleteComment = (payload) => {
 export const toggleStatusComment = (payload) => {
   return {
     type: TOGGLE_STATUS_COMMENT,
+    payload,
+  };
+};
+
+export const getCommentByTodoId = (payload) => {
+  return {
+    type: GET_COMMENT_BY_TODOID,
     payload,
   };
 };
@@ -72,6 +80,14 @@ const comments = (state = initialState, action) => {
           } else {
             return comment;
           }
+        }),
+      };
+
+    case GET_COMMENT_BY_TODOID:
+      return {
+        ...state,
+        todo: state.todoList.find((todo) => {
+          return parseInt(todo.id) === parseInt(action.payload);
         }),
       };
 

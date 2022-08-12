@@ -27,7 +27,7 @@ const Detail = () => {
           <DetailTitle>{todo.title}</DetailTitle>
           <DetailContent>{todo.content}</DetailContent>
         </DetailBox>
-        <Comment />
+        <Comment postId={id} />
       </Layout>
     </>
   );
